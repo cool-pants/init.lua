@@ -13,7 +13,12 @@ return {
 				themesModPath = "themes.",
 			})
 			themes.get_current_theme()
-			vim.keymap.set("n", "<leader>th", themes.select_theme_telescope, {})
+			vim.keymap.set(
+				"n",
+				"<leader>T",
+				themes.select_theme_telescope,
+				{ desc = "Select [T]heme from installed and configured" }
+			)
 			vim.api.nvim_create_user_command("ThemifySync", "lua require('themify').reload_config()", { bang = true })
 		end,
 	},
