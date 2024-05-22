@@ -68,3 +68,24 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.termguicolors = true
 vim.opt.hlsearch = true
+
+-- fold options
+vim.opt.fillchars = {
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+}
+vim.opt.foldlevel = 99
+
+if vim.fn.has("nvim-0.10") == 1 then
+	vim.opt.smoothscroll = true
+	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+	vim.opt.foldmethod = "expr"
+	vim.opt.foldtext = ""
+else
+	vim.opt.foldmethod = "indent"
+	vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+end

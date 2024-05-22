@@ -1,3 +1,4 @@
+require("core.autocommands")
 require("core.set")
 require("core.keymaps")
 require("core.lazy_init")
