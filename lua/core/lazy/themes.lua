@@ -11,6 +11,7 @@ return {
 			local themes = require("themify").setup({
 				modDir = os.getenv("HOME") .. "/.config/nvim/lua/themes/",
 				themesModPath = "themes.",
+				cachePath = "/tmp/nvim.mainak/current.th",
 			})
 			themes.get_current_theme()
 			vim.keymap.set(
