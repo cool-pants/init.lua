@@ -1,8 +1,8 @@
 return {
 	{
 		"cool-pants/themify",
+		-- "themify",
 		-- dir = "~/personal/themify",
-		-- dev = true,
 		dependencies = {
 			"rebelot/kanagawa.nvim",
 			"ellisonleao/gruvbox.nvim",
@@ -15,6 +15,7 @@ return {
 				modDir = os.getenv("HOME") .. "/.config/nvim/lua/themes/",
 				themesModPath = "themes.",
 				cachePath = "/tmp/nvim.mainak/current.th",
+				defaultTheme = "gruvbox",
 			})
 			themes.get_current_theme()
 			vim.keymap.set(
