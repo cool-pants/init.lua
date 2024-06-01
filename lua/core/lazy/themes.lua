@@ -1,11 +1,14 @@
 return {
 	{
 		"cool-pants/themify",
+		-- dir = "~/personal/themify",
+		-- dev = true,
 		dependencies = {
 			"rebelot/kanagawa.nvim",
 			"ellisonleao/gruvbox.nvim",
 			"nyoom-engineering/oxocarbon.nvim",
 			"folke/tokyonight.nvim",
+			"rose-pine/neovim",
 		},
 		config = function()
 			local themes = require("themify").setup({
