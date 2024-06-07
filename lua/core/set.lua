@@ -23,7 +23,8 @@ vim.opt.breakindent = true
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+-- Case-insensitive searching UNLESS \C or one or more capital
+-- letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -52,7 +53,7 @@ vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
-vim.opt.guicursor = ""
+vim.opt.colorcolumn = "80"
 
 -- Tab settings
 vim.opt.tabstop = 4

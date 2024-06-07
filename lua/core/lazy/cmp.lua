@@ -15,6 +15,28 @@ return {
 				end
 				return "make install_jsregexp"
 			end)(),
+			config = function()
+				local ls = require("luasnip")
+				ls.filetype_extend("javascript", { "jsdoc" })
+
+				--- TODO: What is expand?
+				vim.keymap.set({ "i" }, "<C-s>e", function()
+					ls.expand()
+				end, { silent = true })
+
+				vim.keymap.set({ "i", "s" }, "<C-s>;", function()
+					ls.jump(1)
+				end, { silent = true })
+				vim.keymap.set({ "i", "s" }, "<C-s>,", function()
+					ls.jump(-1)
+				end, { silent = true })
+
+				vim.keymap.set({ "i", "s" }, "<C-E>", function()
+					if ls.choice_active() then
+						ls.change_choice(1)
+					end
+				end, { silent = true })
+			end,
 			dependencies = {
 				-- `friendly-snippets` contains a variety of premade snippets.
 				--    See the README about individual language/framework/plugin snippets:
@@ -79,7 +101,7 @@ return {
 
 				-- If you prefer more traditional completion keymaps,
 				-- you can uncomment the following lines
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<C-R>"] = cmp.mapping.confirm({ select = true }),
 				-- ["<Tab>"] = cmp.mapping.select_next_item(),
 				-- ["<S-Tab>"] = cmp.mapping.select_prev_item(),
 
