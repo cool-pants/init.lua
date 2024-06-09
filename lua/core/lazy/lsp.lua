@@ -143,6 +143,7 @@ return { -- LSP Configuration & Plugins
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+		local root_pattern = require("lspconfig").util.root_pattern
 		local servers = {
 			-- clangd = {},
 			gopls = {
@@ -153,7 +154,7 @@ return { -- LSP Configuration & Plugins
 					"gowork",
 					"gotmpl",
 				},
-				root_dir = require("lspconfig").util.root_pattern("go.work", "go.mod", ".git"),
+				root_dir = root_pattern("go.work", "go.mod", ".git"),
 				single_file_support = true,
 			},
 			pyright = {
@@ -171,19 +172,19 @@ return { -- LSP Configuration & Plugins
 						},
 					},
 				},
-				root_dir = require("lspconfig").util.root_pattern(".git"),
+				root_dir = root_pattern(".git"),
 				single_file_support = true,
 			},
 			rust_analyzer = {
 				cmd = { "rust-analyzer" },
 				filetypes = { "rust" },
-				root_dir = require("lspconfig").util.root_pattern("Cargo.toml", "rust-project.json"),
+				root_dir = root_pattern("Cargo.toml", "rust-project.json"),
 				single_file_support = true,
 			},
 			dockerls = {
 				cmd = { "docker-langserver", "--stdio" },
 				filetypes = { "dockerfile" },
-				root_dir = require("lspconfig").util.root_pattern("Dockerfile"),
+				root_dir = root_pattern("Dockerfile"),
 				single_file_support = true,
 			},
 			tsserver = {
@@ -199,13 +200,32 @@ return { -- LSP Configuration & Plugins
 				init_options = {
 					hostInfo = "neovim",
 				},
-				root_dir = require("lspconfig").util.root_pattern(
-					"tsconfig.json",
-					"jsconfig.json",
-					"package.json",
-					".git"
-				),
+				root_dir = root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
 				single_file_support = true,
+			},
+			css_variables = {
+				cmd = { "css-variables-language-server", "--stdio" },
+				filetypes = { "css", "scss", "less" },
+				root_dir = root_pattern("package.json", ".git") or vim.fn.expand("%:p"),
+				settings = {
+					cssVariables = {
+						lookupFiles = { "**/*.less", "**/*.scss", "**/*.sass", "**/*.css" },
+						blacklistFolders = {
+							"**/.cache",
+							"**/.DS_Store",
+							"**/.git",
+							"**/.hg",
+							"**/.next",
+							"**/.svn",
+							"**/bower_components",
+							"**/CVS",
+							"**/dist",
+							"**/node_modules",
+							"**/tests",
+							"**/tmp",
+						},
+					},
+				},
 			},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
