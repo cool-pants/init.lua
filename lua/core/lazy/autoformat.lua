@@ -64,6 +64,8 @@ return { -- Autoformat
 			typescript = { { "prettierd", "prettier" } },
 			typescriptreact = { { "prettierd", "prettier" } },
 			json = { { "prettierd", "prettier" } },
+			html = { { "prettierd", "prettier" } },
+			css = { { "prettierd", "prettier" } },
 			--
 			-- You can use a sub-list to tell conform to run *until* a formatter
 			-- is found.
