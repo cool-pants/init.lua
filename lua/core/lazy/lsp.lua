@@ -144,6 +144,7 @@ return { -- LSP Configuration & Plugins
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local root_pattern = require("lspconfig").util.root_pattern
+		local bufdir = vim.loop.os_homedir()
 		local servers = {
 			-- clangd = {},
 			gopls = {
@@ -206,7 +207,7 @@ return { -- LSP Configuration & Plugins
 			css_variables = {
 				cmd = { "css-variables-language-server", "--stdio" },
 				filetypes = { "css", "scss", "less" },
-				root_dir = root_pattern("package.json", ".git") or vim.fn.expand("%:p"),
+				root_dir = root_pattern({ "package.json", ".git" }) or bufdir,
 				settings = {
 					cssVariables = {
 						lookupFiles = { "**/*.less", "**/*.scss", "**/*.sass", "**/*.css" },
@@ -224,6 +225,22 @@ return { -- LSP Configuration & Plugins
 							"**/tests",
 							"**/tmp",
 						},
+					},
+				},
+			},
+			cssls = {
+				cmd = { "vscode-css-language-server", "--stdio" },
+				filetypes = { "css", "scss", "less" },
+				root_dir = root_pattern({ "package.json", ".git" }) or bufdir,
+				settings = {
+					css = {
+						validate = true,
+					},
+					less = {
+						validate = true,
+					},
+					scss = {
+						validate = true,
 					},
 				},
 			},
