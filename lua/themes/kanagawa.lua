@@ -5,7 +5,8 @@ return {
 	activate = function(style, transparency)
 		require("kanagawa").setup({
 			theme = style,
-			transparency = transparency,
+			transparent = true,
+			undercurl = true,
 		})
 		vim.cmd("colorscheme kanagawa" .. "-" .. style)
 	end,
