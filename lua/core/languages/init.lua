@@ -11,6 +11,7 @@ M.get_languages = function()
 		"docker",
 		"css",
 		"css_vars",
+		"java",
 		"ecmascript",
 		"tailwindcss",
 	}
