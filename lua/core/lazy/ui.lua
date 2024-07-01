@@ -222,6 +222,7 @@ return {
 			"nyoom-engineering/oxocarbon.nvim",
 			"folke/tokyonight.nvim",
 			"rose-pine/neovim",
+			"ray-x/aurora",
 		},
 		config = function()
 			local themes = require("themify").setup({
