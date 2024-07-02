@@ -24,6 +24,12 @@ packadd({
 })
 
 packadd({
+	"echasnovski/mini.hipatterns",
+	event = "BufReadPre",
+	config = conf.mini_hi,
+})
+
+packadd({
 	"folke/trouble.nvim",
 	cmd = "Trouble",
 })
