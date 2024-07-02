@@ -114,5 +114,13 @@ packadd({
 			--
 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
 		})
+
+		-- for vim dadbod
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "vim-dadbod-completion" },
+				{ name = "buffer" },
+			},
+		})
 	end,
 })

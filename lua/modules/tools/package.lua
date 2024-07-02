@@ -5,6 +5,18 @@ packadd({
 })
 
 packadd({
+	"tpope/vim-dadbod",
+})
+
+packadd({
+	"kristijanhusak/vim-dadbod-completion",
+})
+
+packadd({
+	"kristijanhusak/vim-dadbod-ui",
+})
+
+packadd({
 	"lewis6991/gitsigns.nvim",
 	config = conf.gitsigns,
 })
