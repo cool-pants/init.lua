@@ -1,6 +1,7 @@
 local lspconfig = require("lspconfig")
 local _attach = require("modules.lsp.backend")._attach
 local capabilities = require("modules.lsp.backend").capabilities
+local root_pattern = require("lspconfig").util.root_pattern
 
 lspconfig.jsonls.setup({
 	on_attach = _attach,
@@ -13,9 +14,66 @@ lspconfig.tsserver.setup({
 	capabilities = capabilities,
 })
 
+-- npm i -g vscode-css-languageservice
+lspconfig.cssls.setup({
+	filetypes = {
+		"css",
+		"scss",
+		"less",
+	},
+	on_attach = _attach,
+	capabilities = capabilities,
+	settings = {
+		css = {
+			validate = true,
+		},
+		less = {
+			validate = true,
+		},
+		scss = {
+			validate = true,
+		},
+	},
+	root_dir = root_pattern({ "package.json" }) or vim.fn.getcwd(),
+})
+
+-- npm i -g css-variable-ls
+lspconfig.cssvar.setup({
+	filetypes = {
+		"css",
+		"scss",
+		"less",
+	},
+	on_attach = _attach,
+	capabilities = capabilities,
+	settings = {
+		cssVariables = {
+			lookupFiles = { "**/*.less", "**/*.scss", "**/*.sass", "**/*.css" },
+			blacklistFolders = {
+				"**/.cache",
+				"**/.DS_Store",
+				"**/.git",
+				"**/.hg",
+				"**/.next",
+				"**/.svn",
+				"**/bower_components",
+				"**/CVS",
+				"**/dist",
+				"**/node_modules",
+				"**/tests",
+				"**/tmp",
+			},
+		},
+	},
+	root_dir = root_pattern({ "package.json" }) or vim.fn.getcwd(),
+})
+
 -- npm i -g vscode-langservers-extracted
 lspconfig.eslint.setup({
-	filetypes = { "javascriptreact", "typescriptreact" },
+	filetypes = {
+		"javascriptreact",
+		"typescriptreact",
+	},
 	on_attach = function(client, bufnr)
 		_attach(client)
 		vim.api.nvim_create_autocmd("BufWritePre", {
