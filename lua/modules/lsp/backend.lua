@@ -134,8 +134,22 @@ lspconfig.rust_analyzer.setup({
 	},
 })
 
+lspconfig.pyright.setup({
+	on_attach = M._attach,
+	capabilities = M.capabilities,
+	settings = {
+		python = {
+			analysis = {
+				autoSearchPaths = true,
+				diagnosticMode = "workspace",
+				useLibraryCodeForTypes = true,
+			},
+		},
+	},
+	single_file_support = true,
+})
+
 local servers = {
-	"pyright",
 	"bashls",
 	"zls",
 	"dockerls",
