@@ -138,6 +138,7 @@ local servers = {
 	"pyright",
 	"bashls",
 	"zls",
+	"dockerls",
 }
 -- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
 
