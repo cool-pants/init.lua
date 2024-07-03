@@ -336,6 +336,16 @@ function config.mini_hi()
 			-- #a6d189 #81c8be #99d1db #85c1dc
 			-- #8caaee #babbf1 #c6d0f5 #b5bfe2
 			hex_color = hipatterns.gen_highlighter.hex_color(),
+			-- Compute short hexes
+			-- #fff, #f0f, #00f, #000
+			short_hex_color = {
+				pattern = "#%x%x%x%f[%X]",
+				group = function(_, match)
+					local r, g, b = match:sub(2, 2), match:sub(3, 3), match:sub(4, 4)
+					local hex = string.format("#%s%s%s%s%s%s", r, r, g, g, b, b)
+					return MiniHipatterns.compute_hex_color_group(hex, "bg")
+				end,
+			},
 			-- Highlight on hsl color strings
 			-- Highlight test: Catpuccin theme hsl
 			-- hsl(10, 57, 88) hsl(0, 59, 84) hsl(316deg, 73%, 84%) hsl(277deg, 59%, 76%)
