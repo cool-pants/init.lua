@@ -161,7 +161,7 @@ lspconfig.html.setup({
 	},
 })
 
--- npm i -g
+-- npm install -g @tailwindcss/language-server
 lspconfig.tailwindcss.setup({
 	on_new_config = function(new_config)
 		if not new_config.settings then

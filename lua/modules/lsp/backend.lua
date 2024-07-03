@@ -1,6 +1,7 @@
 local M = {}
 local lspconfig = require("lspconfig")
-local root_pattern = require("lspconfig").util.root_pattern
+local util = require("lspconfig.util")
+local root_pattern = util.root_pattern
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = vim.tbl_deep_extend("force", M.capabilities, require("cmp_nvim_lsp").default_capabilities())
@@ -137,6 +138,9 @@ lspconfig.rust_analyzer.setup({
 lspconfig.pyright.setup({
 	on_attach = M._attach,
 	capabilities = M.capabilities,
+	root_dir = function(filename)
+		return util.root_pattern({ ".git" })(filename) or util.path.dirname(filename)
+	end,
 	settings = {
 		python = {
 			analysis = {
