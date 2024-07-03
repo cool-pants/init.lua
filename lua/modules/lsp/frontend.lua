@@ -12,6 +12,23 @@ lspconfig.jsonls.setup({
 lspconfig.tsserver.setup({
 	on_attach = _attach,
 	capabilities = capabilities,
+	init_options = {
+		hostInfo = "neovim",
+	},
+	single_file_support = true,
+	filetypes = {
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+	},
+	root_dir = root_pattern({
+		"tsconfig.json",
+		"package.json",
+		"jsconfig.json",
+	}),
 })
 
 -- npm i -g vscode-css-languageservice
