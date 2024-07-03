@@ -28,6 +28,8 @@ lspconfig.tsserver.setup({
 		"tsconfig.json",
 		"package.json",
 		"jsconfig.json",
+	}) or root_pattern({
+		".git",
 	}),
 })
 
@@ -55,7 +57,7 @@ lspconfig.cssls.setup({
 })
 
 -- npm i -g css-variable-ls
-lspconfig.cssvar.setup({
+lspconfig.css_variables.setup({
 	filetypes = {
 		"css",
 		"scss",
@@ -258,4 +260,13 @@ lspconfig.tailwindcss.setup({
 		"postcss.config.mjs",
 		"postcss.config.ts",
 	}),
+})
+
+lspconfig.marksman.setup({
+	filetypes = {
+		"markdown",
+		"markdown.mdx",
+	},
+	single_file_support = true,
+	root_dir = root_pattern(".git", ".marksman.toml"),
 })
