@@ -8,7 +8,10 @@ local function get_conf()
 			keywords = { bold = true, italic = true },
 		},
 		on_colors = function(colors) end,
-		on_highlights = function(highlights, colors) end,
+		on_highlights = function(highlights, colors)
+			highlights["Type"] = { bold = true, italic = true }
+			highlights["@string.javascript"] = { bold = true, italic = true, fg = colors.green }
+		end,
 	}
 
 	---@type Themify.ThemeConf
