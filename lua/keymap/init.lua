@@ -37,6 +37,11 @@ map.n({
 	-- huez
 	["<leader>co"] = require("themify.pickers").themes,
 
+	-- Notify
+	["<Leader>xn"] = function()
+		require("notify").dismiss({ pending = true, silent = true })
+	end,
+
 	["<Leader>o"] = cmd("Lspsaga outline"),
 	["<Leader>dw"] = cmd("show_workspace_diagnostics"),
 	["<Leader>db"] = cmd("Lspsaga show_buf_diagnostics"),
