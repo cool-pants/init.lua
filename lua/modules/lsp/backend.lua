@@ -153,6 +153,15 @@ lspconfig.pyright.setup({
 	single_file_support = true,
 })
 
+lspconfig.ruff_lsp.setup({
+	cmd = { "ruff-lsp" },
+	filetypes = { "python" },
+	root_dir = function(filename)
+		return util.root_pattern({ ".git" })(filename) or util.path.dirname(filename)
+	end,
+	single_file_support = true,
+})
+
 local servers = {
 	"bashls",
 	"zls",

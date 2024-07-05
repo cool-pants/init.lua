@@ -394,7 +394,7 @@ function config.conform()
 			markdown = { "prettier", "prettierd" },
 			graphql = { "prettier", "prettierd" },
 			lua = { "stylua" },
-			python = { "isort", "black" },
+			python = { "isort", "black", "ruff" },
 		},
 	})
 end
