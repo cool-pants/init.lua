@@ -62,4 +62,22 @@ function config.which_key(_, opts)
 	require("which-key").register(opts.defaults)
 end
 
+function config.themify()
+	require("themify").setup({})
+	local themifyconf = require("themify.config")
+
+	themifyconf["rose-pine"] = require("modules.themes.rosepine").get_conf(true)
+	themifyconf["rose-pine-moon"] = require("modules.themes.rosepine").get_conf(true)
+	themifyconf["rose-pine-main"] = require("modules.themes.rosepine").get_conf(true)
+	themifyconf["rose-pine-dawn"] = require("modules.themes.rosepine").get_conf(false)
+
+	themifyconf["tokyonight"] = require("modules.themes.tokyonight").get_conf()
+	themifyconf["tokyonight-day"] = require("modules.themes.tokyonight").get_conf()
+	themifyconf["tokyonight-moon"] = require("modules.themes.tokyonight").get_conf()
+	themifyconf["tokyonight-night"] = require("modules.themes.tokyonight").get_conf()
+	themifyconf["tokyonight-storm"] = require("modules.themes.tokyonight").get_conf()
+
+	themifyconf.handle_theme_on_setup()
+end
+
 return config

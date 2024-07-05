@@ -18,8 +18,10 @@ packadd({
 
 packadd({
 	"rcarriga/nvim-notify",
+	---@type notify.Config
+	---@diagnostic disable-next-line: missing-fields
 	opts = {
-
+		background_colour = "#000000",
 		stages = "static",
 		timeout = 3000,
 		max_height = function()
@@ -33,7 +35,9 @@ packadd({
 		end,
 	},
 	config = function(opts)
-		require("notify").setup(opts)
+		require("notify").setup(vim.tbl_deep_extend("force", opts, {
+			background_colour = "#000000",
+		}))
 	end,
 })
 
@@ -85,12 +89,10 @@ packadd({ "rose-pine/neovim" })
 packadd({ "ray-x/aurora" })
 
 packadd({
-	"vague2k/huez.nvim",
+	"cool-pants/themify",
 	-- if you want registry related features, uncomment this
 	-- import = "huez-manager.import"
-	branch = "stable",
+	branch = "main",
 	event = "UIEnter",
-	config = function()
-		require("huez").setup({})
-	end,
+	config = conf.themify,
 })

@@ -35,10 +35,7 @@ map.n({
 	["gI"] = require("telescope.builtin").lsp_implementations,
 
 	-- huez
-	["<leader>co"] = require("huez.pickers").themes,
-	["<leader>cof"] = require("huez.pickers").favorites,
-	["<leader>col"] = require("huez.pickers").live,
-	["<leader>coe"] = require("huez.pickers").ensured,
+	["<leader>co"] = require("themify.pickers").themes,
 
 	["<Leader>o"] = cmd("Lspsaga outline"),
 	["<Leader>dw"] = cmd("show_workspace_diagnostics"),
