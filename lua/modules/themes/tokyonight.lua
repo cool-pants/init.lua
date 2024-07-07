@@ -1,5 +1,11 @@
----@return Themify.ThemeConf
-local function get_conf()
+---@type Huez.ThemeConfig
+---@diagnostic disable-next-line: missing-fields
+local M = {
+	styles = { "moon", "day", "night", "storm" },
+}
+
+---@param theme string
+M.set_theme = function(theme)
 	---@type tokyonight.Config
 	local base_conf = {
 		styles = {
@@ -14,18 +20,9 @@ local function get_conf()
 		end,
 	}
 
-	---@type Themify.ThemeConf
-	local conf = {
-		set_theme = function(theme)
-			require("tokyonight").setup(base_conf)
-			vim.cmd("colorscheme " .. theme)
-			return true
-		end,
-	}
-
-	return conf
+	require("tokyonight").setup(base_conf)
+	vim.cmd("colorscheme " .. theme)
+	return true
 end
 
-return {
-	get_conf = get_conf,
-}
+return M

@@ -85,14 +85,26 @@ packadd({ "rebelot/kanagawa.nvim" })
 packadd({ "ellisonleao/gruvbox.nvim" })
 packadd({ "nyoom-engineering/oxocarbon.nvim" })
 packadd({ "folke/tokyonight.nvim" })
-packadd({ "rose-pine/neovim" })
+packadd({ "rose-pine/neovim", as = "rosepine" })
 packadd({ "ray-x/aurora" })
 
+-- packadd({
+-- 	"cool-pants/themify",
+-- 	-- if you want registry related features, uncomment this
+-- 	-- import = "huez-manager.import"
+-- 	branch = "main",
+-- 	event = "UIEnter",
+-- 	config = conf.themify,
+-- })
+
 packadd({
-	"cool-pants/themify",
-	-- if you want registry related features, uncomment this
-	-- import = "huez-manager.import"
-	branch = "main",
+	"cool-pants/huez.nvim",
+	branch = "add_theme_conf",
 	event = "UIEnter",
-	config = conf.themify,
+	config = function()
+		require("huez").setup({
+			suppress_messages = true,
+			theme_config_module = "modules.themes",
+		})
+	end,
 })

@@ -1,6 +1,10 @@
----@param transparent boolean
----@return Themify.ThemeConf
-local function get_conf(transparent)
+---@type Huez.ThemeConfig
+---@diagnostic disable-next-line: missing-fields
+local M = {
+	styles = { "dawn", "main", "moon" },
+}
+
+M.set_theme = function(theme)
 	local base_conf = {
 		highlight_groups = {
 			Comment = { italic = true },
@@ -12,7 +16,7 @@ local function get_conf(transparent)
 		},
 	}
 	local additional_conf = {}
-	if transparent then
+	if theme ~= "rose-pine-dawn" then
 		additional_conf = vim.tbl_extend("force", additional_conf, {
 			highlight_groups = {
 				TelescopeBorder = { fg = "highlight_high", bg = "none" },
@@ -27,19 +31,9 @@ local function get_conf(transparent)
 			},
 		})
 	end
-
-	---@type Themify.ThemeConf
-	local conf = {
-		set_theme = function(theme)
-			require("rose-pine").setup(vim.tbl_deep_extend("force", base_conf, additional_conf))
-			vim.cmd("colorscheme " .. theme)
-			return true
-		end,
-	}
-
-	return conf
+	require("rose-pine").setup(vim.tbl_deep_extend("force", base_conf, additional_conf))
+	vim.cmd("colorscheme " .. theme)
+	return true
 end
 
-return {
-	get_conf = get_conf,
-}
+return M

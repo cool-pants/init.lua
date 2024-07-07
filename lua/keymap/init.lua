@@ -35,7 +35,8 @@ map.n({
 	["gI"] = require("telescope.builtin").lsp_implementations,
 
 	-- huez
-	["<leader>co"] = require("themify.pickers").themes,
+	-- ["<leader>co"] = require("themify.pickers").themes,
+	["<leader>co"] = require("huez.pickers").themes,
 
 	-- Notify
 	["<Leader>xn"] = function()
