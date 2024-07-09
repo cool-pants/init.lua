@@ -164,6 +164,7 @@ lspconfig.ruff_lsp.setup({
 
 local servers = {
 	"bashls",
+	"sqlls",
 	"zls",
 	"dockerls",
 }
