@@ -29,10 +29,19 @@ map.n({
 	["grn"] = cmd("Lspsaga rename"),
 	["gD"] = cmd("Lspsaga peek_definition"),
 	["gR"] = cmd("Lspsaga finder"),
+	-- Tab navigation
+	["te"] = cmd("tabedit"),
+	["<C-n>"] = cmd("tabNext"),
+	["<C-p>"] = cmd("tabprevious"),
+
+	-- Dadbod
+	["<Leader>b"] = cmd("DBUI"),
 	-- Telescope builtin
 	["gd"] = require("telescope.builtin").lsp_definitions,
 	["gr"] = require("telescope.builtin").lsp_references,
 	["gI"] = require("telescope.builtin").lsp_implementations,
+	["<Leader>rn"] = vim.lsp.buf.rename,
+	["<Leader>ca"] = vim.lsp.buf.code_action,
 
 	-- huez
 	-- ["<leader>co"] = require("themify.pickers").themes,
@@ -81,11 +90,15 @@ map.n({
 	["gh"] = cmd("diffget //3"),
 })
 
--- for i = 1, 5 do
--- 	map.n["<Leader>" .. i] = function()
--- 		require("harpoon"):list():select(i)
--- 	end
--- end
+local harpoonKeys = {}
+
+for i = 1, 5 do
+	harpoonKeys["<Leader>" .. i] = function()
+		require("harpoon"):list():select(i)
+	end
+end
+
+map.n(harpoonKeys)
 
 map.nxo({
 	["s"] = function()

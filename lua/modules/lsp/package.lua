@@ -148,6 +148,12 @@ packadd({
 			TypeParameter = "󰅲",
 		}
 
+		if vim.o.ft == "sql" then
+			vim.notify("entered buffer of type sql", "INFO", { data = "CMP" })
+			table.insert(sources, { name = "vim-dadbod-completion" })
+			print(vim.inspect(sources))
+		end
+
 		cmp.setup({
 			sources = sources,
 			---@diagnostic disable-next-line: missing-fields
@@ -204,5 +210,17 @@ packadd({
 				{ name = "buffer" },
 			},
 		})
+	end,
+})
+
+packadd({
+	"kristijanhusak/vim-dadbod-completion",
+	-- event = 'InsertEnter',
+	ft = { "sql" },
+	init = function()
+		-- vim.cmd([[autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni]])
+		vim.cmd(
+			[[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }, {name = 'buffer'}, {name = 'treesitter'}} })]]
+		)
 	end,
 })
