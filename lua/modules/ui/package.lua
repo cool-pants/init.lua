@@ -1,5 +1,4 @@
 local conf = require("modules.ui.config")
-
 packadd({
 	"folke/noice.nvim",
 	event = "VeryLazy",
@@ -81,12 +80,14 @@ packadd({
 	config = conf.which_key,
 })
 
+--- Themes to use for Huez
 packadd({ "rebelot/kanagawa.nvim" })
 packadd({ "ellisonleao/gruvbox.nvim" })
 packadd({ "nyoom-engineering/oxocarbon.nvim" })
 packadd({ "folke/tokyonight.nvim" })
 packadd({ "rose-pine/neovim", as = "rosepine" })
 packadd({ "ray-x/aurora" })
+packadd({ "catppuccin/nvim", name = "catppuccin" })
 
 -- packadd({
 -- 	"cool-pants/themify",
