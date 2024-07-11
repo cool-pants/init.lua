@@ -33,6 +33,10 @@ function M.set_theme(theme)
 		end,
 	})
 
+	require("reactive").setup({
+		load = { theme .. "-cursor", theme .. "-cursorline" },
+	})
+
 	vim.cmd.colorscheme(theme)
 	return true
 end

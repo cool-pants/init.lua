@@ -89,6 +89,9 @@ packadd({ "rose-pine/neovim", as = "rosepine" })
 packadd({ "ray-x/aurora" })
 packadd({ "catppuccin/nvim", name = "catppuccin" })
 
+--- Enhance cursor
+packadd({ "rasulomaroff/reactive.nvim" })
+
 -- packadd({
 -- 	"cool-pants/themify",
 -- 	-- if you want registry related features, uncomment this
