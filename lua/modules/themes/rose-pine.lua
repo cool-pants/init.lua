@@ -24,7 +24,6 @@ M.set_theme = function(theme)
 				TelescopePromptNormal = { bg = "base" },
 				TelescopeResultsNormal = { fg = "subtle", bg = "none" },
 				TelescopeSelection = { fg = "text", bg = "base" },
-				TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
 			},
 			styles = {
 				transparency = true,
