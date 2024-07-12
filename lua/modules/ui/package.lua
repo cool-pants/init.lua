@@ -112,3 +112,10 @@ packadd({
 		})
 	end,
 })
+
+packadd({
+	"goolord/alpha-nvim",
+	event = "VimEnter",
+	config = conf.alpha,
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+})

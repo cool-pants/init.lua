@@ -59,6 +59,7 @@ map.n({
 	["<Leader>fa"] = cmd("Telescope live_grep"),
 	["<Leader>fs"] = cmd("Telescope grep_string"),
 	["<Leader>ff"] = cmd("Telescope find_files find_command=rg,--ignore,--hidden,--files"),
+	["<Leader>fm"] = cmd("Telescope marks"),
 	["<Leader>fg"] = cmd("Telescope git_files"),
 	["<Leader>T"] = cmd("Telescope colorscheme"),
 	-- find in workspace folder which is project dir
@@ -66,6 +67,8 @@ map.n({
 	["<Leader>fh"] = cmd("Telescope help_tags"),
 	["<Leader>gc"] = cmd("Telescope git_commits"),
 	["<Leader>fd"] = cmd("Telescope dotfiles"),
+	-- Huez
+	["<Leader>th"] = cmd("Huez"),
 	-- Oil
 	["-"] = cmd("Oil"),
 	-- Trouble
