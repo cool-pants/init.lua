@@ -44,12 +44,16 @@ packadd({
 	config = function()
 		require("lspsaga").setup({
 			symbol_in_winbar = {
-				enable = false,
-				hide_keyword = true,
-				folder_level = 0,
+				enable = true,
 			},
 			lightbulb = {
 				sign = false,
+			},
+			implement = {
+				enable = true,
+				sign = true,
+				virtual_text = true,
+				priority = 100,
 			},
 			outline = {
 				layout = "float",

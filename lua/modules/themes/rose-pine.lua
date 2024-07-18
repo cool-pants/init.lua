@@ -25,9 +25,6 @@ M.set_theme = function(theme)
 				TelescopeResultsNormal = { fg = "subtle", bg = "none" },
 				TelescopeSelection = { fg = "text", bg = "base" },
 			},
-			styles = {
-				transparency = true,
-			},
 		})
 	end
 	require("rose-pine").setup(vim.tbl_deep_extend("force", base_conf, additional_conf))

@@ -28,7 +28,8 @@ map.n({
 	["ga"] = cmd("Lspsaga code_action"),
 	["grn"] = cmd("Lspsaga rename"),
 	["gD"] = cmd("Lspsaga peek_definition"),
-	["gR"] = cmd("Lspsaga finder"),
+	["gr"] = cmd("Lspsaga finder"),
+	["gri"] = cmd("Lspsaga finder imp"),
 	-- Tab navigation
 	["te"] = cmd("tabedit"),
 	["<C-n>"] = cmd("tabNext"),
@@ -38,7 +39,7 @@ map.n({
 	["<Leader>b"] = cmd("DBUI"),
 	-- Telescope builtin
 	["gd"] = require("telescope.builtin").lsp_definitions,
-	["gr"] = require("telescope.builtin").lsp_references,
+	["gR"] = require("telescope.builtin").lsp_references,
 	["gI"] = require("telescope.builtin").lsp_implementations,
 	["<Leader>rn"] = vim.lsp.buf.rename,
 	["<Leader>ca"] = vim.lsp.buf.code_action,
