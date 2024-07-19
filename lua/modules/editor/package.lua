@@ -39,6 +39,7 @@ packadd({
 	cmd = "Telescope",
 	config = conf.telescope,
 	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
 		"nvim-lua/plenary.nvim",
 		{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -62,7 +63,8 @@ packadd({
 
 packadd({
 	"nvim-treesitter/nvim-treesitter",
-	event = "BufRead",
+	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	build = ":TSUpdate",
 	config = conf.nvim_treesitter,
 })

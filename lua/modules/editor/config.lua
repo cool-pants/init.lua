@@ -144,15 +144,17 @@ function config.nvim_treesitter()
 				node_decremental = "<S-TAB>", -- decrement to the previous node
 			},
 		},
+		indent = { enable = true },
 		highlight = {
 			enable = true,
-			disable = function(_, buf)
-				local max_filesize = 240 * 1024
-				local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-				if ok and stats and stats.size > max_filesize then
-					return true
-				end
-			end,
+			use_languagetree = true,
+			-- disable = function(_, buf)
+			-- 	local max_filesize = 240 * 1024
+			-- 	local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+			-- 	if ok and stats and stats.size > max_filesize then
+			-- 		return true
+			-- 	end
+			-- end,
 		},
 	})
 
