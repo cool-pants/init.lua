@@ -33,9 +33,11 @@ function M.set_theme(theme)
 		end,
 	})
 
-	require("reactive").setup({
-		load = { theme .. "-cursor", theme .. "-cursorline" },
-	})
+	if theme ~= "catppuccin" then
+		require("reactive").setup({
+			load = { theme .. "-cursor", theme .. "-cursorline" },
+		})
+	end
 
 	vim.cmd.colorscheme(theme)
 	return true
