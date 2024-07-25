@@ -71,13 +71,12 @@ packadd({
 
 packadd({
 	"nvim-treesitter/nvim-treesitter-context",
-	event = "BufEnter",
+	event = { "BufEnter", "BufNewFile", "BufReadPre" },
 	config = conf.nvim_treesitter_context,
 })
 
 packadd({
 	"windwp/nvim-ts-autotag",
-	event = "BufReadPre",
 	config = conf.ts_autotag,
 })
 
