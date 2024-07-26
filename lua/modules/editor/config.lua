@@ -133,6 +133,16 @@ function config.nvim_treesitter()
 			"dockerfile",
 			"sql",
 		},
+		auto_install = true,
+		autopairs = {
+			enable = true,
+		},
+		autotag = {
+			enable = false,
+		},
+		endwise = {
+			enable = true,
+		},
 		incremental_selection = {
 			enable = enable, -- use textobjects
 			-- disable = {"elm"},
