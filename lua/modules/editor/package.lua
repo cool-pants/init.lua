@@ -6,11 +6,27 @@ packadd({
 })
 
 packadd({
+	"willothy/nvim-cokeline",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"stevearc/resession.nvim",
+	},
+	config = conf.cokeline,
+})
+
+packadd({
 	"stevearc/oil.nvim",
 	config = conf.oil,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
+})
+
+packadd({
+	"nvim-tree/nvim-tree.lua",
+	cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+	config = conf.nvim_tree,
 })
 
 packadd({

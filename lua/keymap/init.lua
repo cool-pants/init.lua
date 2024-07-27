@@ -15,6 +15,10 @@ map.n({
 	-- Lazy
 	["<Leader>l"] = cmd("Lazy"),
 
+	-- nvimtree
+	["<leader>e"] = cmd("NvimTreeFocus"),
+	["<C-x>"] = cmd("NvimTreeToggle"),
+
 	-- Lspsaga
 	["<leader>q"] = vim.diagnostic.setloclist,
 	["<leader>cd"] = vim.diagnostic.open_float,
@@ -35,6 +39,13 @@ map.n({
 	["<C-n>"] = cmd("tabNext"),
 	["<C-p>"] = cmd("tabprevious"),
 
+	-- Bufferline Nav
+	["<Tab>"] = function()
+		require("cokeline.mappings").by_step("focus", 1)
+	end,
+	["<S-Tab>"] = function()
+		require("cokeline.mappings").by_step("focus", -1)
+	end,
 	-- Dadbod
 	["<Leader>b"] = cmd("DBUI"),
 	-- Telescope builtin

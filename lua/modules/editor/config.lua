@@ -268,6 +268,83 @@ function config.oil()
 	})
 end
 
+function config.nvim_tree()
+	require("nvim-tree").setup({
+		filters = {
+			dotfiles = true,
+		},
+		disable_netrw = true,
+		hijack_netrw = true,
+		hijack_cursor = true,
+		hijack_unnamed_buffer_when_opening = false,
+		sync_root_with_cwd = true,
+		update_focused_file = {
+			enable = true,
+			update_root = false,
+		},
+		view = {
+			adaptive_size = false,
+			side = "left",
+			width = 30,
+			preserve_window_proportions = true,
+		},
+		git = {
+			enable = true,
+			ignore = true,
+		},
+		filesystem_watchers = {
+			enable = true,
+		},
+		actions = {
+			open_file = {
+				resize_window = true,
+			},
+		},
+		renderer = {
+			root_folder_label = false,
+			highlight_git = true,
+			highlight_opened_files = "none",
+
+			indent_markers = {
+				enable = true,
+			},
+
+			icons = {
+				show = {
+					file = true,
+					folder = true,
+					folder_arrow = true,
+					git = true,
+				},
+
+				glyphs = {
+					default = "󰈚",
+					symlink = "",
+					folder = {
+						default = "",
+						empty = "",
+						empty_open = "",
+						open = "",
+						symlink = "",
+						symlink_open = "",
+						arrow_open = "",
+						arrow_closed = "",
+					},
+					git = {
+						unstaged = "✗",
+						staged = "✓",
+						unmerged = "",
+						renamed = "➜",
+						untracked = "★",
+						deleted = "",
+						ignored = "◌",
+					},
+				},
+			},
+		},
+	})
+end
+
 function config.mini()
 	-- Better Around/Inside textobjects
 	--
@@ -407,6 +484,235 @@ function config.conform()
 			graphql = { "prettier", "prettierd" },
 			lua = { "stylua" },
 			python = { "isort", "black", "ruff" },
+		},
+	})
+end
+
+function config.cokeline()
+	local is_picking_focus = require("cokeline.mappings").is_picking_focus
+	local is_picking_close = require("cokeline.mappings").is_picking_close
+	local hlgroups = require("cokeline.hlgroups")
+	local hl_attrs = hlgroups.get_hl_attr
+	local red = vim.g.terminal_color_1
+	local yellow = vim.g.terminal_color_3
+	local Icons = require("core.icons")
+	local harpoon_sorter = function()
+		local cache = {}
+		local setup = false
+
+		local function marknum(buf, force)
+			local harpoon = require("harpoon")
+			local b = cache[buf.number]
+			if b == nil or force then
+				local path = require("plenary.path"):new(buf.path):make_relative(vim.uv.cwd())
+				for i, mark in ipairs(harpoon:list("files"):display()) do
+					if mark == path then
+						b = i
+						cache[buf.number] = b
+						break
+					end
+				end
+			end
+			return b
+		end
+
+		-- Use this in `config.buffers.new_buffers_postion`
+		return function(a, b)
+			local has_harpoon = package.loaded["harpoon"] ~= nil
+			if not has_harpoon then
+				---@diagnostic disable-next-line: undefined-field
+				return a._valid_index < b._valid_index
+			elseif not setup then
+				local refresh = function()
+					cache = {}
+				end
+				require("harpoon"):extend({
+					ADD = refresh,
+					REMOVE = refresh,
+					REORDER = refresh,
+				})
+				setup = true
+			end
+
+			-- switch the a and b._valid_index to place non-harpoon bufs
+			-- on the left side of the tabline. Currently places them on the
+			-- right
+			local ma = marknum(a)
+			local mb = marknum(b)
+			if ma and not mb then
+				return true
+			elseif mb and not ma then
+				return false
+			elseif ma == nil and mb == nil then
+				ma = a._valid_index
+				mb = b._valid_index
+			end
+
+			return ma < mb
+		end
+	end
+
+	---@return integer
+	local function total_buffers()
+		-- Get the list of all buffers
+		local buffers = vim.api.nvim_list_bufs()
+
+		-- Count the listed buffers
+		local listed_buffers_count = 0
+		for _, buf in ipairs(buffers) do
+			if vim.fn.buflisted(buf) == 1 then
+				listed_buffers_count = listed_buffers_count + 1
+			end
+		end
+		return listed_buffers_count
+	end
+
+	local Lines = require("modules.editor.cokeline")
+
+	local Colors = Lines.Colors
+	require("cokeline").setup({
+		-- Only show the bufferline when there are at least this many visible buffers.
+		-- default: `1`.
+		---@type integer
+		show_if_buffers_are_at_least = 0,
+		buffers = {
+			-- Which buffer to focus when a buffer is deleted, `prev` focuses the
+			-- buffer to the left of the deleted one while `next` focuses the one the
+			-- right.
+			-- default: 'next'.
+			focus_on_delete = "prev",
+
+			-- If set to `last` new buffers are added to the end of the bufferline,
+			-- if `next` they are added next to the current buffer.
+			-- if set to `directory` buffers are sorted by their full path.
+			-- if set to `number` buffers are sorted by bufnr, as in default Neovim
+			-- default: 'last'.
+			---@type 'last' | 'next' | 'directory' | 'number' | fun(a: Buffer, b: Buffer):boolean
+			new_buffers_position = harpoon_sorter(),
+
+			-- If true, right clicking a buffer will close it
+			-- The close button will still work normally
+			-- Default: true
+			---@type boolean
+			delete_on_right_click = true,
+		},
+
+		mappings = {
+			-- Controls what happens when the first (last) buffer is focused and you
+			-- try to focus/switch the previous (next) buffer. If `true` the last
+			-- (first) buffers gets focused/switched, if `false` nothing happens.
+			-- default: `true`.
+			---@type boolean
+			cycle_prev_next = true,
+
+			-- Disables mouse mappings
+			-- default: `false`.
+			---@type boolean
+			disable_mouse = false,
+		},
+
+		-- Maintains a history of focused buffers using a ringbuffer
+		history = {
+			---@type boolean
+			enabled = true,
+			---The number of buffers to save in the history
+			---@type integer
+			size = 2,
+		},
+
+		-- The default highlight group values.
+		-- The `fg`, `bg`, and `sp` keys are either colors in hexadecimal format or
+		-- functions taking a `buffer` parameter and returning a color in
+		-- hexadecimal format. Style attributes work the same way, but functions
+		-- should return boolean values.
+		default_hl = {
+			-- default: `ColorColumn`'s background color for focused buffers,
+			-- `Normal`'s foreground color for unfocused ones.
+			---@type nil | string | fun(buffer: Buffer): string
+			fg = function(buffer)
+				return buffer.is_focused and Colors.active_fg or Colors.inactive_fg --[[@as string]]
+			end,
+
+			-- default: `Normal`'s foreground color for focused buffers,
+			-- `ColorColumn`'s background color for unfocused ones.
+			-- default: `Normal`'s foreground color.
+			---@type nil | string | function(buffer: Buffer): string,
+			bg = function(buffer)
+				return (buffer.is_focused and Colors.active_bg) or Colors.inactive_bg --[[@as string]]
+			end,
+
+			-- default: unset.
+			---@type nil | string | function(buffer): string,
+			sp = nil,
+
+			---@type nil | boolean | fun(buf: Buffer):boolean
+			bold = true,
+			---@type nil | boolean | fun(buf: Buffer):boolean
+			italic = nil,
+			---@type nil | boolean | fun(buf: Buffer):boolean
+			underline = nil,
+			---@type nil | boolean | fun(buf: Buffer):boolean
+			undercurl = nil,
+			---@type nil | boolean | fun(buf: Buffer):boolean
+			strikethrough = nil,
+		},
+		-- A list of components to be rendered for each buffer. Check out the section
+		-- below explaining what this value can be set to.
+		-- default: see `/lua/cokeline/config.lua`
+		---@type Component[]
+		components = {
+			{
+				text = function(buffer)
+					return (buffer.is_focused and Icons.separators.circle.left)
+						or (buffer.index == 1 and Icons.separators.circle.left)
+						or " "
+				end,
+				fg = function(buffer)
+					return (buffer.is_focused and Colors.active_bg) or Colors.inactive_bg --[[@as string]]
+				end,
+				bg = function(buffer)
+					return ((buffer.is_focused or buffer.index ~= 1) and Colors.inactive_bg) or Colors.corners_bg --[[@as string]]
+				end,
+			},
+
+			{
+				text = function(buffer)
+					return (is_picking_focus() or is_picking_close()) and buffer.pick_letter .. " "
+						or buffer.devicon.icon
+				end,
+				fg = function(buffer)
+					return (is_picking_focus() and yellow) or (is_picking_close() and red) or buffer.devicon.color
+				end,
+				italic = function()
+					return (is_picking_focus() or is_picking_close())
+				end,
+				bold = function()
+					return (is_picking_focus() or is_picking_close())
+				end,
+			},
+			{
+				text = " ",
+			},
+			Lines.UniquePrefix,
+			Lines.Filename,
+			Lines.Diagnostics,
+			{
+				text = Icons.actions.close,
+				bold = true,
+				delete_buffer_on_left_click = true,
+			},
+			{
+				text = function(buffer)
+					return ((buffer.index == total_buffers() or buffer.is_focused) and Icons.separators.circle.right)
+						or " "
+				end,
+				fg = function(buffer)
+					return (buffer.is_focused and Colors.active_bg) or Colors.inactive_bg --[[@as string]]
+				end,
+				bg = function(buffer)
+					return (buffer.index == total_buffers() and Colors.corners_bg or Colors.inactive_bg) --[[@as string]]
+				end,
+			},
 		},
 	})
 end

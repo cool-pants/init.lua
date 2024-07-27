@@ -1,5 +1,8 @@
 local api, opt, g = vim.api, vim.opt, vim.g
 g.have_nerd_font = true
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.mousemoveent = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = "a"
