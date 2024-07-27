@@ -491,8 +491,6 @@ end
 function config.cokeline()
 	local is_picking_focus = require("cokeline.mappings").is_picking_focus
 	local is_picking_close = require("cokeline.mappings").is_picking_close
-	local hlgroups = require("cokeline.hlgroups")
-	local hl_attrs = hlgroups.get_hl_attr
 	local red = vim.g.terminal_color_1
 	local yellow = vim.g.terminal_color_3
 	local Icons = require("core.icons")
@@ -574,7 +572,7 @@ function config.cokeline()
 		-- Only show the bufferline when there are at least this many visible buffers.
 		-- default: `1`.
 		---@type integer
-		show_if_buffers_are_at_least = 0,
+		show_if_buffers_are_at_least = 1,
 		buffers = {
 			-- Which buffer to focus when a buffer is deleted, `prev` focuses the
 			-- buffer to the left of the deleted one while `next` focuses the one the
