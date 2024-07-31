@@ -102,8 +102,8 @@ packadd({ "rasulomaroff/reactive.nvim" })
 -- })
 
 packadd({
-	"cool-pants/huez.nvim",
-	branch = "add_theme_conf",
+	"vague2k/huez.nvim",
+	branch = "main",
 	event = "UIEnter",
 	config = function()
 		require("huez").setup({
