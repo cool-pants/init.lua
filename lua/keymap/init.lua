@@ -16,8 +16,8 @@ map.n({
 	["<Leader>l"] = cmd("Lazy"),
 
 	-- nvimtree
-	["<leader>e"] = cmd("NvimTreeFocus"),
-	["<C-x>"] = cmd("NvimTreeToggle"),
+	["<leader>tf"] = cmd("NvimTreeFocus"),
+	["<leader>tt"] = cmd("NvimTreeToggle"),
 
 	-- Lspsaga
 	["<leader>q"] = vim.diagnostic.setloclist,

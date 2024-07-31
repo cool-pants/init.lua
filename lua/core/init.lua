@@ -1,6 +1,6 @@
 require("core.options")
 require("core.pack"):boot_strap()
-require("internal.cowboy").cowboy()
+-- require("internal.cowboy").cowboy()
 
 -- vim.g.netrw_browse_split = 0
 -- vim.g.netrw_banner = 0
