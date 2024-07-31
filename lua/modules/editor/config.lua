@@ -63,7 +63,7 @@ function config.telescope()
 				"node_modules",
 				"venv",
 				".venv",
-				".git/",
+				"[.+]git/",
 				"__pycache__",
 			},
 		},
