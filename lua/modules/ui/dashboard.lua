@@ -28,9 +28,12 @@ local default_header = {
 	},
 }
 
+local stats = require("lazy").stats()
+local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+
 local footer = {
 	type = "text",
-	val = "",
+	val = "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
 	opts = {
 		position = "center",
 		hl = "Number",
