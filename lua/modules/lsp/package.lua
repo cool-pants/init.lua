@@ -1,9 +1,7 @@
 packadd({
 	"neovim/nvim-lspconfig",
-	ft = _G.my_program_ft,
+	ft = _G.my_languages_ft,
 	dependencies = {
-
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
@@ -64,7 +62,7 @@ packadd({
 
 packadd({
 	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
+	event = "LspAttach",
 	dependencies = {
 		{
 			-- Snippet Engine & its associated nvim-cmp source

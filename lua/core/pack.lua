@@ -7,6 +7,8 @@ function pack:load_modules_packages()
 	local modules_dir = vim.fs.joinpath(self.config_path, "lua", "modules")
 	self.repos = {}
 
+	require(modules_dir:sub(#modules_dir - 6))
+
 	local list = vim.fs.find("package.lua", { path = modules_dir, type = "file", limit = 10 })
 	if #list == 0 then
 		return
@@ -37,6 +39,9 @@ function pack:boot_strap()
 		lockfile = vim.fs.joinpath(self.data_path, "lazy-lock.json"),
 		dev = { path = "~/workspace" },
 		change_detection = { notify = false },
+		defaults = {
+			lazy = true,
+		},
 		ui = {
 			-- If you are using a Nerd Font: set icons to an empty table which will use the
 			-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table

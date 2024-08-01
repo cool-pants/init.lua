@@ -2,25 +2,23 @@ local conf = require("modules.editor.config")
 
 packadd({
 	"numToStr/Comment.nvim",
+	config = "BufEnter",
 	opts = {},
 })
 
 packadd({
 	"willothy/nvim-cokeline",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
 		"stevearc/resession.nvim",
 	},
+	event = "BufEnter",
 	config = conf.cokeline,
 })
 
 packadd({
 	"stevearc/oil.nvim",
+	cmd = "Oil",
 	config = conf.oil,
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
 })
 
 packadd({
@@ -56,7 +54,6 @@ packadd({
 	config = conf.telescope,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-lua/plenary.nvim",
 		{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 			"nvim-telescope/telescope-fzf-native.nvim",
 
@@ -71,9 +68,6 @@ packadd({
 			end,
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
-
-		-- Useful for getting pretty icons, but requires a Nerd Font.
-		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 })
 
@@ -93,6 +87,7 @@ packadd({
 
 packadd({
 	"windwp/nvim-ts-autotag",
+	event = { "BufReadPre", "BufNewFile" },
 	config = conf.ts_autotag,
 })
 

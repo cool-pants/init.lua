@@ -30,3 +30,5 @@ hi GitSignsAdd guifg=#005523
 hi GitSignsChange guifg=#007373
 hi GitSignsDelete guifg=#590008
 ]])
+
+-- Post this load up the Theme as well, using huez

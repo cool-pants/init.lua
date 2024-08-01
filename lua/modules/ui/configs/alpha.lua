@@ -11,21 +11,15 @@ local default_terminal = {
 	},
 }
 
+local knight = require("pants.ascii.hollow-knight-001")
 local default_header = {
-	type = "text",
-	val = {
-		[[                                  __]],
-		[[     ___     ___    ___   __  __ /\_\    ___ ___]],
-		[[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
-		[[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
-		[[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-		[[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-	},
-	opts = {
+	type = "text", --threshold 120 --save-raw ./xxx.txt --alpha
+	val = knight.draw,
+	opts = vim.tbl_deep_extend("force", {
 		position = "center",
 		hl = "Type",
 		-- wrap = "overflow";
-	},
+	}, knight.set_hl()),
 }
 
 local stats = require("lazy").stats()
@@ -110,12 +104,4 @@ local config = {
 	},
 }
 
-return {
-	button = button,
-	section = section,
-	config = config,
-	-- theme config
-	leader = leader,
-	-- deprecated
-	opts = config,
-}
+require("alpha").setup(config)
