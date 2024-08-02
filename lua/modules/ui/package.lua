@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 local conf = require("modules.ui.configs")
 packadd({
 	"folke/noice.nvim",
@@ -69,4 +70,24 @@ packadd({
 	"goolord/alpha-nvim",
 	event = "VimEnter",
 	config = conf.alpha,
+=======
+packadd({
+	"catppuccin/nvim",
+	name = "catppuccin",
+	lazy = false,
+	opts = require("pants.configs.catppuccin").opts,
+	priority = 1000,
+})
+
+packadd({
+	"echasnovski/mini.nvim",
+	config = require("pants.configs.mini").config,
+})
+
+packadd({
+	"echasnovski/mini.hipatterns",
+	lazy = true,
+	event = "BufEnter",
+	config = require("pants.configs.mini").hipatterns,
+>>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })

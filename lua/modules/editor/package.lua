@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 local conf = require("modules.editor.config")
 
 packadd({
@@ -13,10 +14,32 @@ packadd({
 	},
 	event = "BufEnter",
 	config = conf.cokeline,
+=======
+packadd({
+	"nvim-telescope/telescope.nvim",
+	cmd = "Telescope",
+	opts = require("pants.configs.telescope").opts,
+	lazy = true,
+	requires = { { "nvim-lua/plenary.nvim" } },
+})
+
+packadd({
+	"nvim-neo-tree/neo-tree.nvim",
+	branch = "v3.x",
+	lazy = true,
+	cmd = "Neotree",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+		"MunifTanjim/nui.nvim",
+		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+	},
+>>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })
 
 packadd({
 	"stevearc/oil.nvim",
+<<<<<<< HEAD
 	cmd = "Oil",
 	config = conf.oil,
 })
@@ -71,24 +94,44 @@ packadd({
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 	},
+=======
+	lazy = true,
+	cmd = "Oil",
+	opts = require("pants.configs.oil").opts,
+>>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })
 
 packadd({
 	"nvim-treesitter/nvim-treesitter",
+<<<<<<< HEAD
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	build = ":TSUpdate",
 	config = conf.nvim_treesitter,
+=======
+	lazy = true,
+	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+	build = ":TSUpdate",
+	config = require("pants.configs.treesitter").config,
+>>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })
 
 packadd({
 	"nvim-treesitter/nvim-treesitter-context",
+<<<<<<< HEAD
 	event = { "BufEnter", "BufNewFile", "BufReadPre" },
 	config = conf.nvim_treesitter_context,
+=======
+	lazy = true,
+	event = { "BufEnter", "BufNew", "BufReadPre" },
+	opts = require("pants.configs.treesitter-context").opts,
+>>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })
 
 packadd({
 	"windwp/nvim-ts-autotag",
+<<<<<<< HEAD
 	ft = {
 		"ts",
 		"tsx",
@@ -128,4 +171,9 @@ packadd({
 			})
 		end, 0)
 	end,
+=======
+	lazy = true,
+	event = "InsertEnter",
+	config = true,
+>>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })
