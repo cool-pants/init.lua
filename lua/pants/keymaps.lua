@@ -21,6 +21,8 @@ local diagnostic_goto = function(next, severity)
 	end
 end
 
+local flash = require("flash")
+
 map({ "n", "v" }, {
 	-- Greatest remap courtesy : asbjornHaland. Yank to clipboard
 	["<leader>y"] = [["+y]],
@@ -111,7 +113,7 @@ map("n", {
 	["gr"] = cmd("Lspsaga finder"),
 	["gri"] = cmd("Lspsaga finder imp"),
 	["<Leader>o"] = cmd("Lspsaga outline"),
-	["<Leader>db"] = cmd("Lspsaga show_buf_diagnostics"),
+	["<localleader>db"] = cmd("Lspsaga show_buf_diagnostics"),
 
 	-- Trouble
 	["<Leader>xx"] = cmd("Trouble diagnostics toggle"),
@@ -120,6 +122,27 @@ map("n", {
 	["<Leader>cl"] = cmd("Trouble lsp toggle focus=false win.position=right"),
 	["<Leader>xL"] = cmd("Trouble loclist toggle"),
 	["<Leader>xQ"] = cmd("Trouble qflist toggle"),
+
+	-- Fugitive
+	["<Leader>gs"] = cmd("Git"),
+	["gu"] = cmd("diffget //2"),
+	["gh"] = cmd("diffget //3"),
+
+	-- Gitsigns
+	["<Leader>gn"] = cmd("Gitsigns next_hunk"),
+	["<Leader>gp"] = cmd("Gitsigns prev_hunk"),
+	["<Leader>gP"] = cmd("Gitsigns preview_hunk_inline"),
+
+	-- Dadbod DB
+	["<Leader>db"] = cmd("DBUI"),
+
+	-- Flash
+	["s"] = function()
+		flash.jump()
+	end,
+	["S"] = function()
+		flash.treesitter()
+	end,
 })
 
 map("i", {

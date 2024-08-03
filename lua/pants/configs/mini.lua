@@ -1,12 +1,11 @@
 local M = {}
 
 M.config = function()
-	require("mini.git").setup()
 	require("mini.diff").setup()
 	require("mini.statusline").setup()
 end
 
-M.hipatterns = function ()
+M.hipatterns = function()
 	local hipatterns = require("mini.hipatterns")
 	---@param h number?
 	---@param s number?

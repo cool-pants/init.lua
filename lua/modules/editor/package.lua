@@ -101,6 +101,8 @@ packadd({
 >>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 })
 
+-- Treesitter fun
+
 packadd({
 	"nvim-treesitter/nvim-treesitter",
 <<<<<<< HEAD
@@ -176,4 +178,49 @@ packadd({
 	event = "InsertEnter",
 	config = true,
 >>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
+})
+
+-- Git utils
+
+packadd({
+	"lewis6991/gitsigns.nvim",
+	lazy = true,
+	event = "BufEnter",
+	opts = require("pants.configs.gitsigns").opts,
+})
+
+packadd({
+	"tpope/vim-fugitive",
+	lazy = true,
+	cmd = { "Git" },
+})
+
+-- Database integration
+
+packadd({
+	"tpope/vim-dadbod",
+	event = "VeryLazy",
+	lazy = true,
+	cmd = { "DB", "DBUI" },
+})
+
+packadd({
+	"kristijanhusak/vim-dadbod-ui",
+	lazy = true,
+	cmd = "DBUI",
+})
+
+-- Cool folke plugins
+
+packadd({
+	"folke/flash.nvim",
+	lazy = true,
+	event = "BufEnter",
+})
+
+packadd({
+	"folke/todo-comments.nvim",
+	lazy = true,
+	event = "BufEnter",
+	opts = { signs = false },
 })

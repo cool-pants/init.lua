@@ -41,3 +41,19 @@ au("BufEnter", {
 		opt.shiftwidth = tabLen[vim.bo.filetype] or 4
 	end,
 })
+
+-- Vim Fugitive Courtesy ThePrimeagen
+au("BufWinEnter", {
+	group = group,
+	pattern = "*",
+	callback = function()
+		if vim.bo.ft ~= "fugitive" then
+			return
+		end
+
+		local bufnr = vim.api.nvim_get_current_buf()
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>p", "<cmd>Git push<CR>", {})
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>P", "<cmd>Git pull --rebase<CR>", {})
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>t", ":Git push -u origin", {})
+	end,
+})
