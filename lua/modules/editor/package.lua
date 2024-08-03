@@ -224,3 +224,25 @@ packadd({
 	event = "BufEnter",
 	opts = { signs = false },
 })
+
+-- Folke neoconf
+packadd({
+	"folke/neoconf.nvim",
+	priority = 900,
+	opts = {},
+})
+
+-- Debug Adapter Protocol
+packadd({
+	"mfussenegger/nvim-dap",
+	dependencies = {
+		"nvim-neotest/nvim-nio",
+		"rcarriga/nvim-dap-ui",
+
+		"leoluz/nvim-dap-go",
+		"mfussenegger/nvim-dap-python",
+	},
+	lazy = true,
+	event = "BufEnter",
+	config = require("pants.configs.nvim-dap").config,
+})

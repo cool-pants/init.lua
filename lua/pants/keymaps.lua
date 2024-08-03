@@ -2,6 +2,12 @@ local cmd = function(str)
 	return "<Cmd>" .. str .. "<cr>"
 end
 
+local fn = function(exec)
+	return function()
+		exec()
+	end
+end
+
 local map = function(mode, mappings, opts)
 	for key, value in pairs(mappings) do
 		if type(value) == "table" then
@@ -22,6 +28,7 @@ local diagnostic_goto = function(next, severity)
 end
 
 local flash = require("flash")
+local dap = require("dap")
 
 map({ "n", "v" }, {
 	-- Greatest remap courtesy : asbjornHaland. Yank to clipboard
@@ -135,6 +142,17 @@ map("n", {
 
 	-- Dadbod DB
 	["<Leader>db"] = cmd("DBUI"),
+
+	-- NVIM DAP
+	["<Leader>b"] = dap.toggle_breakpoint,
+	["<Leader>B"] = dap.set_breakpoint,
+	["<Leader>lp"] = function()
+		require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+	end,
+	["<F5>"] = fn(dap.continue),
+	["<F10>"] = fn(dap.step_over),
+	["<F11>"] = fn(dap.step_into),
+	["<F12>"] = fn(dap.step_out),
 
 	-- Flash
 	["s"] = function()
