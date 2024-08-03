@@ -39,7 +39,9 @@ packadd({
 
 packadd({
 	"echasnovski/mini.hipatterns",
-	event = "BufReadPre",
+	ft = {
+		_G.webdev_languages,
+	},
 	config = conf.mini_hi,
 })
 
@@ -87,7 +89,14 @@ packadd({
 
 packadd({
 	"windwp/nvim-ts-autotag",
-	event = { "BufReadPre", "BufNewFile" },
+	ft = {
+		"ts",
+		"tsx",
+		"js",
+		"jsx",
+		"html",
+		"vue",
+	},
 	config = conf.ts_autotag,
 })
 

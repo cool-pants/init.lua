@@ -1,0 +1,31 @@
+{
+  "Competitive Programming Boilerplate": {
+    "prefix": ["inc", "incbits", "cp", "bits"],
+    "body": [
+      "#include<bits/stdc++.h>",
+      "",
+      "#define int long long int",
+      "#define F first",
+      "#define S second",
+      "#define pb push_back",
+      "",
+      "",
+      "void solve() {",
+      "    $0",
+      "}",
+      "",
+      "int32_t main (int32_t argc, char *argv[]) {",
+      "    #ifndef ONLINE_JUDGE",
+      "    freopen(\"input.txt\", \"r\", stdin);",
+      "    freopen(\"output.txt\", \"w\", stdout);",
+      "    #endif",
+      "",
+      "    int t = 1;",
+      "    std::cin >> t;",
+      "    while (t--) solve();",
+      "",
+      "    return 0;",
+      "}"
+    ]
+  }
+}

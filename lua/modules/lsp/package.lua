@@ -80,6 +80,8 @@ packadd({
 				config = function()
 					local ls = require("luasnip")
 					ls.filetype_extend("javascript", { "jsdoc" })
+					local lsvscode = require("luasnip.loaders.from_vscode")
+					lsvscode.lazy_load({ paths = { "./snippets" } })
 
 					--- TODO: What is expand?
 				end,

@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
 _G.my_languages_ft = {
+	"c",
 	"cpp",
 	"rust",
 	"go",
@@ -12,6 +13,18 @@ _G.my_languages_ft = {
 	"typescript",
 	"typescriptreact",
 	"json",
+}
+_G.webdev_languages = {
+	"js",
+	"jsx",
+	"ts",
+	"tsx",
+	"html",
+	"css",
+	"scss",
+	"sass",
+	"lua",
+	"vue",
 }
 
 require("core")

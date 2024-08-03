@@ -10,7 +10,6 @@ local dotfiles_list = function()
 	local dirs = vim.split(dot_path, ",")
 	local list = {}
 
-	print(vim.inspect(dirs))
 	for _, dir in pairs(dirs) do
 		local p = io.popen("rg --files --hidden --glob=\\!.git " .. dir)
 		for file in p:lines() do
