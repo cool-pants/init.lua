@@ -199,7 +199,6 @@ packadd({
 
 packadd({
 	"tpope/vim-dadbod",
-	event = "VeryLazy",
 	lazy = true,
 	cmd = { "DB", "DBUI" },
 })
