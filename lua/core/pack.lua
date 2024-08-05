@@ -4,7 +4,7 @@ pack.__index = pack
 
 function pack:load_modules_packages()
 	---@diagnostic disable-next-line: param-type-mismatch
-	local modules_dir = vim.fs.joinpath(self.config_path, "lua", "modules")
+	local modules_dir = vim.fs.joinpath(self.config_path, "lua", "plugins")
 	self.repos = {}
 
 <<<<<<< HEAD
