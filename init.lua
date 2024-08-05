@@ -1,15 +1,4 @@
 vim.g.mapleader = " "
-<<<<<<< HEAD
-
-_G.my_languages_ft = {
-	"c",
-	"cpp",
-	"rust",
-	"go",
-	"lua",
-	"sh",
-	"python",
-=======
 vim.g.maplocalleader = ","
 
 require("pants.options")
@@ -25,34 +14,15 @@ _G.languages = {
 	"python",
 	"sh",
 
->>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 	"javascript",
 	"javascriptreact",
 	"typescript",
 	"typescriptreact",
 	"json",
-<<<<<<< HEAD
-}
-_G.webdev_languages = {
-	"js",
-	"jsx",
-	"ts",
-	"tsx",
-=======
-
->>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 	"html",
 	"css",
 	"scss",
 	"sass",
-<<<<<<< HEAD
-	"lua",
-	"vue",
-}
-
-require("core")
-require("internal.event")
-=======
 }
 
 vim.api.nvim_create_autocmd("User", {
@@ -78,4 +48,3 @@ vim.api.nvim_create_autocmd("User", {
 require("core.pack"):boot_strap()
 
 vim.cmd("colorscheme catppuccin-macchiato")
->>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
