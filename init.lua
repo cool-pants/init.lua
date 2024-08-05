@@ -1,31 +1,50 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
-_G.my_languages_ft = {
+require("pants.options")
+
+_G.languages = {
+	"lua",
+	"go",
+	"gomod",
+	"gowork",
+	"gotmpl",
 	"c",
 	"cpp",
-	"rust",
-	"go",
-	"lua",
-	"sh",
 	"python",
+	"sh",
+
 	"javascript",
 	"javascriptreact",
 	"typescript",
 	"typescriptreact",
 	"json",
-}
-_G.webdev_languages = {
-	"js",
-	"jsx",
-	"ts",
-	"tsx",
 	"html",
 	"css",
 	"scss",
 	"sass",
-	"lua",
-	"vue",
 }
 
-require("core")
-require("internal.event")
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	callback = function()
+		require("pants.keymaps")
+		require("pants.autocommands")
+	end,
+})
+
+-- Loading shada is SLOW, so we're going to load it manually,
+-- after UI-enter so it doesn't block startup.
+local shada = vim.o.shada
+vim.o.shada = ""
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	callback = function()
+		vim.o.shada = shada
+		pcall(vim.cmd.rshada, { bang = true })
+	end,
+})
+
+require("core.pack"):boot_strap()
+
+vim.cmd("colorscheme catppuccin-macchiato")
