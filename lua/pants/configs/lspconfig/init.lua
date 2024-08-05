@@ -33,6 +33,22 @@ lspconfig.lua_ls.setup({
 	},
 })
 
+local servers = {
+	"bashls",
+	"sqlls",
+	"zls",
+	"dockerls",
+}
+-- lspconfig.pylsp.setup({ settings = { pylsp = { plugins = { pylint = { enabled = true } } } } })
+
+for _, server in ipairs(servers) do
+	lspconfig[server].setup({
+		on_attach = utils._attach,
+		capabilities = utils.capabilities,
+	})
+end
+
 require("pants.configs.lspconfig.cpp")
 require("pants.configs.lspconfig.golang")
+require("pants.configs.lspconfig.python")
 require("pants.configs.lspconfig.frontend")
