@@ -7,11 +7,6 @@ function pack:load_modules_packages()
 	local modules_dir = vim.fs.joinpath(self.config_path, "lua", "plugins")
 	self.repos = {}
 
-<<<<<<< HEAD
-	require(modules_dir:sub(#modules_dir - 6))
-
-=======
->>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 	local list = vim.fs.find("package.lua", { path = modules_dir, type = "file", limit = 10 })
 	if #list == 0 then
 		return
@@ -40,12 +35,6 @@ function pack:boot_strap()
 	require("lazy").setup(self.repos, {
 		---@diagnostic disable-next-line: param-type-mismatch
 		lockfile = vim.fs.joinpath(self.data_path, "lazy-lock.json"),
-<<<<<<< HEAD
-		dev = { path = "~/workspace" },
-		change_detection = { notify = false },
-		defaults = {
-			lazy = true,
-=======
 		dev = { path = "~/personal/workspace" },
 		change_detection = { notify = false },
 		performance = {
@@ -69,7 +58,6 @@ function pack:boot_strap()
 					"zipPlugin",
 				},
 			},
->>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 		},
 		ui = {
 			-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -90,8 +78,6 @@ function pack:boot_strap()
 				lazy = "💤 ",
 			},
 		},
-<<<<<<< HEAD
-=======
 		profiling = {
 			-- Enables extra stats on the debug tab related to the loader cache.
 			-- Additionally gathers stats about all package.loaders
@@ -99,7 +85,6 @@ function pack:boot_strap()
 			-- Track each new require in the Lazy profiling tab
 			require = true,
 		},
->>>>>>> 4086e70 (feat(rewrite): super fast nvim config)
 	})
 end
 
