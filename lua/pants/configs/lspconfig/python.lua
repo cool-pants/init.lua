@@ -28,3 +28,16 @@ lspconfig.ruff_lsp.setup({
 	end,
 	single_file_support = true,
 })
+
+lspconfig.pylsp.setup({
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					ignore = { "W391" },
+					maxLineLength = 100,
+				},
+			},
+		},
+	},
+})

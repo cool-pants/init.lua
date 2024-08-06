@@ -31,6 +31,7 @@ M.config = function()
 			"eslint",
 			-- python
 			"pyright",
+			"pylsp",
 			"ruff",
 			"ruff_lsp",
 			"basedpyright",
