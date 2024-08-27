@@ -15,7 +15,6 @@ packadd({
 		"f3fora/cmp-spell",
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-emoji",
 		"kristijanhusak/vim-dadbod-completion",
 	},
