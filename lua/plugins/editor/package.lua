@@ -19,6 +19,13 @@ packadd({
 	},
 })
 
+-- bullets support
+packadd({
+	"bullets-vim/bullets.vim",
+	lazy = true,
+	event = "BufReadPost",
+})
+
 packadd({
 	"stevearc/oil.nvim",
 	lazy = true,
