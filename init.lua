@@ -4,33 +4,33 @@ vim.g.maplocalleader = ","
 require("pants.options")
 
 _G.languages = {
-	"lua",
-	"go",
-	"gomod",
-	"gowork",
-	"gotmpl",
-	"c",
-	"cpp",
-	"python",
-	"sh",
+    "lua",
+    "go",
+    "gomod",
+    "gowork",
+    "gotmpl",
+    "c",
+    "cpp",
+    "python",
+    "sh",
 
-	"javascript",
-	"javascriptreact",
-	"typescript",
-	"typescriptreact",
-	"json",
-	"html",
-	"css",
-	"scss",
-	"sass",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "html",
+    "css",
+    "scss",
+    "sass",
 }
 
 vim.api.nvim_create_autocmd("User", {
-	pattern = "VeryLazy",
-	callback = function()
+    pattern = "VeryLazy",
+    callback = function()
 		require("pants.keymaps")
-		require("pants.autocommands")
-	end,
+        require("pants.autocommands")
+    end,
 })
 
 -- Loading shada is SLOW, so we're going to load it manually,
@@ -38,11 +38,11 @@ vim.api.nvim_create_autocmd("User", {
 local shada = vim.o.shada
 vim.o.shada = ""
 vim.api.nvim_create_autocmd("User", {
-	pattern = "VeryLazy",
-	callback = function()
-		vim.o.shada = shada
-		pcall(vim.cmd.rshada, { bang = true })
-	end,
+    pattern = "VeryLazy",
+    callback = function()
+        vim.o.shada = shada
+        pcall(vim.cmd.rshada, { bang = true })
+    end,
 })
 
 require("core.pack"):boot_strap()

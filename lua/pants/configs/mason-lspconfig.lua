@@ -1,58 +1,58 @@
 local M = {}
 
 M.config = function()
-	require("mason").setup()
-	require("mason-lspconfig").setup({
-		ensure_installed = {
-			-- lua
-			"lua_ls",
+    require("mason").setup()
+    require("mason-lspconfig").setup({
+        ensure_installed = {
+            -- lua
+            "lua_ls",
 
-			-- bash
-			"bashls",
+            -- bash
+            "bashls",
 
-			-- webdev
-			--- mardown
-			"marksman",
+            -- webdev
+            --- mardown
+            "marksman",
 
-			--- json
-			"jsonls",
+            --- json
+            "jsonls",
 
-			--- css
-			"cssls",
-			"css_variables",
-			"tailwindcss",
+            --- css
+            "cssls",
+            "css_variables",
+            "tailwindcss",
 
-			--- html
-			"html",
+            --- html
+            "html",
 
-			--- react
-			--- typescript
-			"tsserver",
-			"eslint",
-			-- python
-			"pyright",
-			"pylsp",
-			"ruff",
-			"ruff_lsp",
-			"basedpyright",
+            --- react
+            --- typescript
+            "ts_ls",
+            "eslint",
+            -- python
+            "pyright",
+            "pylsp",
+            "ruff",
+            "ruff_lsp",
+            "basedpyright",
 
-			-- go
-			"gopls",
+            -- go
+            "gopls",
 
-			-- cpp
-			"clangd",
+            -- cpp
+            "clangd",
 
-			-- sql
-			"sqlls",
+            -- sql
+            "sqlls",
 
-			-- yaml
-			"yamlls",
+            -- yaml
+            "yamlls",
 
-			-- docker
-			"dockerls",
-			"docker_compose_language_service",
-		},
-	})
+            -- docker
+            "dockerls",
+            "docker_compose_language_service",
+        },
+    })
 end
 
 return M
