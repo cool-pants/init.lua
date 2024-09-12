@@ -11,6 +11,11 @@ lspconfig.gopls.setup({
     single_file_support = true,
     settings = {
         gopls = {
+            standaloneTags = {
+                "ignore",
+                "wireinject",
+                "!wireinject"
+            },
             gofumpt = true,
             codelenses = {
                 gc_details = false,
