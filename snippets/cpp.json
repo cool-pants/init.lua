@@ -1,8 +1,13 @@
 {
   "Competitive Programming Boilerplate": {
-    "prefix": ["inc", "incbits", "cp", "bits"],
+    "prefix": [
+      "inc",
+      "incbits",
+      "cp",
+      "bits"
+    ],
     "body": [
-      "#include<bits/stdc++.h>",
+      "#include \"iostream\"",
       "",
       "#define int long long int",
       "#define F first",

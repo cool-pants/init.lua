@@ -1,50 +1,48 @@
+-- =========================================
+-- Minimal Neovim Configuration
+-- Optimized for Go, Python, C++, React/TS
+-- =========================================
+
+-- Set leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-require("pants.options")
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git", "clone", "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-_G.languages = {
-    "lua",
-    "go",
-    "gomod",
-    "gowork",
-    "gotmpl",
-    "c",
-    "cpp",
-    "python",
-    "sh",
+-- Load configuration modules
+require("options")
+require("keymaps")
 
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "html",
-    "css",
-    "scss",
-    "sass",
-}
+-- Setup plugins with lazy.nvim
+require("lazy").setup("plugins", {
+    change_detection = { notify = false },
+    performance = {
+        cache = { enabled = true },
+        rtp = {
+            disabled_plugins = {
+                "gzip", "matchit", "matchparen", "netrwPlugin",
+                "tarPlugin", "tohtml", "tutor", "zipPlugin",
+            },
+        },
+    },
+})
 
+-- Load LSP configuration after plugins
 vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
     callback = function()
-		require("pants.keymaps")
-        require("pants.autocommands")
+        require("lsp")
     end,
 })
 
--- Loading shada is SLOW, so we're going to load it manually,
--- after UI-enter so it doesn't block startup.
-local shada = vim.o.shada
-vim.o.shada = ""
-vim.api.nvim_create_autocmd("User", {
-    pattern = "VeryLazy",
-    callback = function()
-        vim.o.shada = shada
-        pcall(vim.cmd.rshada, { bang = true })
-    end,
-})
-
-require("core.pack"):boot_strap()
-
-vim.cmd("colorscheme catppuccin-macchiato")
+-- Set colorscheme
+vim.cmd.colorscheme("catppuccin-macchiato")
